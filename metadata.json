@@ -1,0 +1,6 @@
+{
+  "name": "KaiOS Flappy Bird",
+  "description": "A classic retro Flappy Bird game designed and scaled specifically for KaiOS devices (320x240 screen).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

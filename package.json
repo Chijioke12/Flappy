@@ -1,0 +1,28 @@
+{
+  "name": "kaios-flappy-bird",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "generate:assets": "python3 generate_assets.py",
+    "generate:sounds": "python3 generate_sounds.py",
+    "prebuild": "npm run generate:assets && npm run generate:sounds",
+    "build": "vite build",
+    "postbuild": "python3 package_omnisd.py",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "preact": "^10.22.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.8.2",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-legacy": "^6.0.1",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "name": "KaiOS Flappy Bird",
+  "description": "Flappy Bird game optimized for KaiOS devices",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/assets/icon_56.png",
+    "112": "/assets/icon_112.png"
+  },
+  "developer": {
+    "name": "AI Coding Agent",
+    "url": "https://ai.studio/build"
+  },
+  "default_locale": "en-US",
+  "categories": ["games"],
+  "type": "web",
+  "permissions": {
+    "audio-channel-normal": {
+      "description": "Required for playing game sounds"
+    }
+  },
+  "fullscreen": "true",
+  "orientation": ["landscape"]
+}
