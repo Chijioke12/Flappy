@@ -1,4 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Baloo+Chettan+2:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Luckiest Guy';
+  src: url('/assets/fonts/LuckiestGuy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LuckiestGuy';
+  src: url('/assets/fonts/LuckiestGuy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Baloo Chettan 2';
+  src: url('/assets/fonts/BalooChettan-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BalooChettan2';
+  src: url('/assets/fonts/BalooChettan-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   box-sizing: border-box;
@@ -9,8 +38,8 @@
 body {
   background-color: #1a1a2e;
   color: #fff;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,9 +93,10 @@ body {
 }
 
 .console-brand {
-  font-size: 8px;
+  font-family: 'Luckiest Guy', sans-serif;
+  font-size: 11px;
   color: #a3a3c2;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
@@ -76,7 +106,7 @@ body {
   align-items: center;
   gap: 4px;
   background-color: #202030;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 4px;
   border: 1px solid #3d3d5c;
   width: 100%;
@@ -86,7 +116,7 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 6px;
+  font-size: 11px;
   color: #cccccc;
 }
 
@@ -110,8 +140,9 @@ body {
   border-bottom: 4px solid #b31622;
   border-radius: 4px;
   color: #fff;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 8px;
+  font-family: 'Luckiest Guy', cursive, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
   padding: 8px;
   cursor: pointer;
   text-align: center;

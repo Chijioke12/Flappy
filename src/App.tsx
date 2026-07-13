@@ -15,22 +15,44 @@ export default function App() {
     const savedHigh = parseInt(localStorage.getItem('kaios_flappy_high') || '0', 10);
     setHighScore(savedHigh);
 
-    // Initialize the Phaser 3.24.1 Game engine
-    const game = initPhaserGame(
-      parentId,
-      (state: GameState) => {
-        setGameState(state);
-      },
-      (scores: { score: number; highScore: number }) => {
-        setScore(scores.score);
-        setHighScore(scores.highScore);
-      }
-    );
+    let isDestroyed = false;
+    let game: any = null;
 
-    gameRef.current = game;
+    const startPhaser = () => {
+      if (isDestroyed) return;
+      game = initPhaserGame(
+        parentId,
+        (state: GameState) => {
+          setGameState(state);
+        },
+        (scores: { score: number; highScore: number }) => {
+          setScore(scores.score);
+          setHighScore(scores.highScore);
+        }
+      );
+      gameRef.current = game;
+    };
+
+    if ('fonts' in document) {
+      // Force load the custom fonts to ensure they are available to Phaser on boot
+      Promise.all([
+        document.fonts.load('12px "Luckiest Guy"'),
+        document.fonts.load('12px "Baloo Chettan 2"'),
+        document.fonts.load('12px "LuckiestGuy"'),
+        document.fonts.load('12px "BalooChettan2"')
+      ]).then(() => {
+        startPhaser();
+      }).catch((err) => {
+        console.warn('Font loading failed or timed out:', err);
+        startPhaser();
+      });
+    } else {
+      startPhaser();
+    }
 
     // Cleanup game on unmount
     return () => {
+      isDestroyed = true;
       if (gameRef.current) {
         gameRef.current.destroy(true);
         gameRef.current = null;
@@ -80,9 +102,17 @@ export default function App() {
 
   return (
     <div id="app-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+      {/* Hidden font preloader to ensure fonts are loaded before Phaser starts */}
+      <div style={{ opacity: 0, position: 'absolute', pointerEvents: 'none', top: -100, left: -100, height: '1px', width: '1px', overflow: 'hidden' }}>
+        <span style={{ fontFamily: '"Luckiest Guy"' }}>Preload</span>
+        <span style={{ fontFamily: '"Baloo Chettan 2"' }}>Preload</span>
+        <span style={{ fontFamily: '"LuckiestGuy"' }}>Preload</span>
+        <span style={{ fontFamily: '"BalooChettan2"' }}>Preload</span>
+      </div>
+
       <header style={{ textAlign: 'center', marginBottom: '5px' }}>
-        <h1 style={{ fontSize: '18px', color: '#ffde00', textShadow: '2px 2px #000' }}>KAIOS FLAPPY</h1>
-        <p style={{ fontSize: '8px', color: '#8b8ba9', marginTop: '4px' }}>PORTED RETRO FLAPPER</p>
+        <h1 style={{ fontFamily: '"Luckiest Guy", sans-serif', fontSize: '24px', color: '#ffde00', textShadow: '2px 2px #000', letterSpacing: '1px' }}>KAIOS FLAPPY</h1>
+        <p style={{ fontFamily: '"Baloo Chettan 2", sans-serif', fontSize: '11px', color: '#8b8ba9', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>PORTED RETRO FLAPPER</p>
       </header>
 
       {/* Handheld Device / Phone Bezel Frame */}
@@ -94,11 +124,11 @@ export default function App() {
 
         {/* Console Details & Soft Key Bar */}
         <div style={{ width: '320px', display: 'flex', justifyContent: 'space-between', padding: '6px 4px 0 4px', borderBottom: '1px solid #3d3d5c' }}>
-          <span style={{ fontSize: '7px', color: '#ffde00', fontWeight: 'bold' }}>
+          <span style={{ fontSize: '11px', color: '#ffde00', fontWeight: 'bold' }}>
             {gameState === GameState.PLAYING || gameState === GameState.PAUSED ? `[ L: ${getSoftLeftLabel()} ]` : ''}
           </span>
           <span className="console-brand">Kai-OS Edition</span>
-          <span style={{ fontSize: '7px', color: '#00e676', fontWeight: 'bold' }}>
+          <span style={{ fontSize: '11px', color: '#00e676', fontWeight: 'bold' }}>
             {gameState === GameState.GAMEOVER ? '[ R: RESTART ]' : ''}
           </span>
         </div>
@@ -132,7 +162,7 @@ export default function App() {
         </div>
       </div>
 
-      <footer style={{ textAlign: 'center', fontSize: '6px', color: '#8b8ba9', maxWidth: '300px', lineHeight: '1.4' }}>
+      <footer style={{ textAlign: 'center', fontSize: '11px', color: '#8b8ba9', maxWidth: '300px', lineHeight: '1.4' }}>
         Designed with custom 320x240 scaling and offline-first asset generator.
         Binds perfectly to KaiOS keys, D-pad controllers and soft buttons.
       </footer>

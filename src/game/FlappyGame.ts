@@ -88,30 +88,30 @@ export class FlappyScene extends Phaser.Scene {
     this.physics.add.collider(this.bird, this.ground, this.handleGroundCollision, null, this);
     this.physics.add.overlap(this.bird, this.pipes, this.handlePipeCollision, null, this);
 
-    // 7. Dynamic HUD UI using Phaser Text (Press Start 2P)
+    // 7. Dynamic HUD UI using custom fonts (Luckiest Guy & Baloo Chettan 2)
     this.titleText = this.add.text(160, 50, 'FLAPPY BIRD', {
-      fontFamily: '"Press Start 2P"',
-      fontSize: '14px',
+      fontFamily: 'LuckiestGuy, "Luckiest Guy", sans-serif',
+      fontSize: '24px',
       color: '#ffde00',
       stroke: '#000000',
-      strokeThickness: 3
+      strokeThickness: 4
     }).setOrigin(0.5).setDepth(10);
 
-    this.promptText = this.add.text(160, 120, 'PRESS [CENTER]\nOR [5] TO FLAP', {
-      fontFamily: '"Press Start 2P"',
-      fontSize: '8px',
+    this.promptText = this.add.text(160, 125, 'PRESS [CENTER]\nOR [5] TO FLAP', {
+      fontFamily: 'LuckiestGuy, "Luckiest Guy", sans-serif',
+      fontSize: '14px',
       color: '#ffffff',
       stroke: '#000000',
-      strokeThickness: 2,
+      strokeThickness: 3,
       align: 'center'
     }).setOrigin(0.5).setDepth(10);
 
-    this.scoreText = this.add.text(160, 20, 'SCORE: 0', {
-      fontFamily: '"Press Start 2P"',
-      fontSize: '10px',
+    this.scoreText = this.add.text(160, 22, 'SCORE: 0', {
+      fontFamily: 'LuckiestGuy, "Luckiest Guy", sans-serif',
+      fontSize: '18px',
       color: '#ffffff',
       stroke: '#000000',
-      strokeThickness: 2
+      strokeThickness: 3
     }).setOrigin(0.5).setDepth(10).setVisible(false);
 
     // 8. Bind global key events for game actions
@@ -375,11 +375,11 @@ export class FlappyScene extends Phaser.Scene {
 
     // Floating "+1" pop-up effect!
     const popup = this.add.text(this.bird.x, this.bird.y - 15, '+1', {
-      fontFamily: '"Press Start 2P"',
-      fontSize: '8px',
+      fontFamily: 'LuckiestGuy, "Luckiest Guy", sans-serif',
+      fontSize: '14px',
       color: '#ffde00',
       stroke: '#000000',
-      strokeThickness: 2
+      strokeThickness: 3
     }).setOrigin(0.5).setDepth(11);
     
     this.tweens.add({
